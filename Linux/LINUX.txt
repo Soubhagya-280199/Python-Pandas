@@ -1,0 +1,224 @@
+Lunch EC2 instance on windows:---
+	First of all, we need to create an EC2 instance in our AWS console after that we have to 
+to go to connect to instances 
+then ssh client
+
+In your windows machine, first of all, we need to add a extra feature called 
+open  ssh client, download it add it 
+
+after adding the ssh client in windows features
+come to ur cmd type SSH 
+then copy that ssh-client configure key, like given below and hit enter 
+ssh -i "soubhagya-keypair.pem" ec2-user@ec2-13-126-34-3.ap-south-1.compute.amazonaws.com
+
+
+Running python on Linux:
+install python: Sudo apt-get install python3
+
+then : sudo apt-get install python3-pip python3-dev    [: this python3-dev is additional for AI and ML 
+
+create folder using touch first.py
+
+then emacs first.py
+
+
+
+
+LINUX Commands:
+
+whoami:  shows the user name
+
+sudo apt-get update - to update your resources 
+
+clear: Clear the terminal
+
+ls:     Shows what files and folders present in your current directory
+
+mkdir:  Create a Directory 
+
+touch: Create a File
+
+cd: Change Directory, also used to go to the home directory
+
+cd ..: change directory 1 step before
+
+mv ../first.txt .  : Move this file first.txt from 1 step before and paste it in current dir
+
+cp: Copy 
+
+nano: used for access terminal as a text doc
+
+cat: open the text doc
+
+echo: print the statement
+
+history: Commands you used in the current session 
+
+ls -la: shows the details of the files present in the directory
+
+sudo apt-get update: update all the present applications and software in the linux OS
+
+man : manual for every commands , helper commands
+
+scp : server copy
+
+scripting : a File consists of Commands which will execute the file
+programming : consists of functions and attributes 
+
+whcih bash : shows which bash you are using 
+
+nano file_name.sh : crating a script file
+
+ls -l : shows what are the permissions given 
+this will shows u like this
+-rw-rw-r-- 1 ubuntu ubuntu 51 Jun  7 01:51 File_name.sh
+
+./file_name.sh : to make this script file as executable file
+
+if the script file not having permission to execute then, 
+
+- CHMOD 777 file_name.ssh
+
+if we want to check the permission after giving executabale permission
+-rwxrwxrwx 1 ubuntu ubuntu 51 Jun  7 01:51 File_name.sh
+
+Read WRite Execute
+
+
+---
+# : used for commenting line in bash 
+
+echo $bash : this will shows the bash name if you add this in your bash script 
+
+variables in bash :
+
+name="banty"
+
+echo "hello ${name}"
+
+
+user input:
+
+echo " hello please enter your age"
+
+read age
+
+echo " my age is ${age}"
+
+
+--- sleep timing
+sleep 2 : it will sleep you code for 2 secs
+
+--- argument in shell scripting 
+echo "welcome to my  shell $1"
+-./firstscript.sh banty    # passing argument
+-welcome to my  shell banty
+
+
+
+---- if else statement
+if [ "$1" = "like" ]
+then
+ echo "hey please $1 this video"
+else
+ echo "hey please subscribe"
+fi
+
+- ./firstscript.sh like
+hey please like this video
+
+
+----If elif else 
+#!/bin/bash
+a=300
+b=400
+c=100
+
+if [[ $a -gt $b && $a -gt $c ]]
+then
+ echo " A is greater $a "
+elif [[ $b -gt $a && $b -gt $c ]]
+then
+ echo " B is greater $b "
+else
+ echo " C is biggest $c "
+fi
+
+
+--- Loops in Linux
+#!/bin/bash
+
+for ((i=0; i<10; i++))
+do
+echo "$i"
+done
+
+---
+HOW TO CREATE  MULTIPLE FILES AT A TIME 
+CREATE text1.txt first, using touch
+
+then >> touch text{2..5}.txt
+
+this will create text files form 2 to 5
+
+
+----# get all the files present in the folder
+for FILE in *
+do
+echo $FILE
+done
+
+---# get all the .txt/any particular ext. files present in the folder
+for FILE in *.txt
+do
+echo $FILE
+done
+
+
+
+-- this is adv scripting -- adding new user by script 
+#!/bin/bash
+
+add_user()
+{
+USER=$1
+PASS=$2
+
+useradd -m -p $PASS $USER && echo "Successfully added User"
+}
+
+
+#main
+add_user banty banty@123
+
+
+>> sudo ./ adding_user.sh  # this execution will only run by super user (SUDO)
+
+
+
+--- taking back up of a folder with mutliple files using scripts
+-first i created a backup folder in home section 
+#!/bin/bash
+
+# backup
+
+src_dir=/home/ubuntu/scripts
+tgt_dir=/home/ubuntu/backups
+
+curr_timestamp=$(date "+%Y-%m-%H-%M-%S")
+backup_file=$tgt_dir/$curr_timestamp.tgz
+echo "$curr_timestamp"
+echo "Taking Backup on $curr_timestamp"
+
+
+tar czf $backup_file --absolute-names $src_dir
+
+
+echo "BackUp completed"
+
+--
+How to Extract this file in backup 
+got to backup folder 
+>>tar xf 2022-06-18-54-03.tgz
+this will extract your tgz file 
+
